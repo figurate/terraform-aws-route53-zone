@@ -1,5 +1,5 @@
 from diagrams import Diagram
-from diagrams.generic.blank import Blank
+from diagrams.aws.network import Route53HostedZone
 
-with Diagram("Terraform Module Template", show=False, direction="TB"):
-    Blank("module placeholder")
+with Diagram("AWS Route53 Zone", show=False, direction="TB"):
+    Route53HostedZone("Public/Private Zone")

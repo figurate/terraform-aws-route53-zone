@@ -1,7 +1,7 @@
 /**
- * # Terraform Module Template
+ * # AWS Route53 Zone
  *
- * ![Terraform Module Template](terraform_module_template.png)
+ * ![AWS Route53 Zone](aws_route53_zone.png)
  *
- * ![main workflow](https://github.com/figurate/terraform-module-template/actions/workflows/main.yml/badge.svg)
+ * ![main workflow](https://github.com/figurate/terraform-aws-route53-zone/actions/workflows/main.yml/badge.svg)
  */
