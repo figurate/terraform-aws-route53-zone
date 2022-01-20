@@ -24,7 +24,9 @@ diagram:
 	$(DIAGRAMS) diagram.py
 
 docs: diagram
-	$(TERRAFORM_DOCS) markdown ./ >./README.md
+	$(TERRAFORM_DOCS) markdown ./ >./README.md && \
+		$(TERRAFORM_DOCS) markdown ./modules/private >./modules/private/README.md && \
+		$(TERRAFORM_DOCS) markdown ./modules/public >./modules/public/README.md
 
 format:
 	$(TERRAFORM) fmt -list=true ./ && \
