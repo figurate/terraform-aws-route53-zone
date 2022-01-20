@@ -1,8 +1,8 @@
-# Terraform Module Template
+# AWS Route53 Zone
 
-![Terraform Module Template](terraform\_module\_template.png)
+![AWS Route53 Zone](aws\_route53\_zone.png)
 
-![main workflow](https://github.com/figurate/terraform-module-template/actions/workflows/main.yml/badge.svg)
+![main workflow](https://github.com/figurate/terraform-aws-route53-zone/actions/workflows/main.yml/badge.svg)
 
 ## Requirements
 
@@ -10,11 +10,18 @@ No requirements.
 
 ## Providers
 
-No provider.
+| Name | Version |
+|------|---------|
+| aws | n/a |
 
 ## Inputs
 
-No input.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| aliases | A list of aliases (FQDN, target dns, target zone) | `list(tuple([string, string, string]))` | `[]` | no |
+| name | Route53 Zone name | `any` | n/a | yes |
+| records | A list of records (FQDN, record type, target addresses) | `list(tuple([string, string, list(string)]))` | `[]` | no |
+| vpc\_name | Name of VPC to associate with a private zone (set as null for a public zone) | `any` | `null` | no |
 
 ## Outputs
 
