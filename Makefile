@@ -2,22 +2,22 @@ SHELL:=/bin/bash
 include .env
 
 EXAMPLE=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+VERSION=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
-.PHONY: all clean validate test docs format
+.PHONY: all clean validate test diagram docs format release
 
-all: validate test docs format
+all: test docs format
 
 clean:
 	rm -rf .terraform/
 
 validate:
-	$(TERRAFORM) init && $(TERRAFORM) validate && \
-		$(TERRAFORM) -chdir=modules/private init && $(TERRAFORM) -chdir=modules/private validate && \
-		$(TERRAFORM) -chdir=modules/public init && $(TERRAFORM) -chdir=modules/public validate
+	$(TERRAFORM) init -upgrade && $(TERRAFORM) validate && \
+		$(TERRAFORM) -chdir=modules/private init -upgrade && $(TERRAFORM) -chdir=modules/private validate && \
+		$(TERRAFORM) -chdir=modules/public init -upgrade && $(TERRAFORM) -chdir=modules/public validate
 
 test: validate
 	$(CHECKOV) -d /work
-
 	$(TFSEC) /work
 
 diagram:
@@ -34,4 +34,7 @@ format:
 		$(TERRAFORM) fmt -list=true ./modules/public
 
 example:
-	$(TERRAFORM) -chdir=examples/$(EXAMPLE) init && $(TERRAFORM) -chdir=examples/$(EXAMPLE) plan -input=false
+	$(TERRAFORM) -chdir=examples/$(EXAMPLE) init -upgrade && $(TERRAFORM) -chdir=examples/$(EXAMPLE) plan -input=false
+
+release: test
+	git tag $(VERSION) && git push --tags
