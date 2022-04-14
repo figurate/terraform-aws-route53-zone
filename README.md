@@ -1,5 +1,7 @@
 # AWS Route53 Zone
 
+[![CI](https://github.com/figurate/terraform-aws-route53-zone/actions/workflows/main.yml/badge.svg)](https://github.com/figurate/terraform-aws-route53-zone/actions/workflows/main.yml)
+
 ![AWS Route53 Zone](aws\_route53\_zone.png)
 
 ![main workflow](https://github.com/figurate/terraform-aws-route53-zone/actions/workflows/main.yml/badge.svg)
